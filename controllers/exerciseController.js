@@ -24,6 +24,19 @@ exports.createExercise = async (req, res) => {
   }
 };
 
+// @desc    Get all exercises
+// @route   GET /api/exercises
+// @access  Private
+exports.getAllExercises = async (req, res) => {
+  try {
+    const exercises = await Exercise.find();
+    res.json(exercises);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
 // @desc    Get all exercises for a patient
 // @route   GET /api/exercises/patient/:patient_id
 // @access  Private

@@ -1,6 +1,7 @@
 const express = require('express');
 const { 
   createExercise, 
+  getAllExercises,
   getExercisesByPatientId, 
   getExerciseById, 
   updateExercise, 
@@ -13,6 +14,11 @@ const router = express.Router();
 // @desc    Create a new exercise
 // @access  Private
 router.post('/', createExercise);
+
+// @route   GeET/api/exercises
+// @desc    get exercise
+// @access  Private
+router.get('/', getAllExercises);
 
 // @route   GET /api/exercises/patient/:patient_id
 // @desc    Get all exercises for a patient
