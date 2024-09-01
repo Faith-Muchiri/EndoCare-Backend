@@ -18,7 +18,7 @@ exports.addSpecialist = async (req, res) => {
       name,
       specialization,
       description,
-      profile_img, // Adding the profile image here
+      profile_img, 
     });
 
     await specialist.save();
@@ -76,7 +76,7 @@ exports.updateSpecialist = async (req, res) => {
     name,
     specialization,
     description,
-    profile_img, // Including profile_img in the update
+    profile_img, 
   };
 
   try {
