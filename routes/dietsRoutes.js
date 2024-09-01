@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { addDiet, getDietsByPatient, deleteDiet } = require('../controllers/dietController');
+const { addDiet, getDietsByPatient, deleteDiet, getAllDiets } = require('../controllers/dietController');
 
 // @route   POST /api/diets
 // @desc    Add a new diet
 // @access  Private
 router.post('/', addDiet);
+
+// Get all diets
+router.get('/', getAllDiets);
 
 // @route   GET /api/diets/patient/:patient_id
 // @desc    Get all diets for a patient

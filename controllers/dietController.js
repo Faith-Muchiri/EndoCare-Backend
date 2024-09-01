@@ -22,6 +22,20 @@ exports.addDiet = async (req, res) => {
   }
 };
 
+// @desc    Get all diets
+// @route   GET /api/diets
+// @access  Private
+exports.getAllDiets = async (req, res) => {
+  try {
+    const diets = await Diet.find();
+    res.json(diets);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
+
 // @desc    Get all diets for a patient
 // @route   GET /api/diets/patient/:patientId
 // @access  Private
