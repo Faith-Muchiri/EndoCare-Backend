@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 // @route   POST /api/auth/register
 // @access  Public
 exports.registerPatient = async (req, res) => {
-  const { name, email, passwordHash, profile_img } = req.body;
+  const { name, email, password, confirmPassword, profile_img } = req.body;
 
   try {
     // Check if the patient already exists
@@ -15,17 +15,17 @@ exports.registerPatient = async (req, res) => {
       return res.status(400).json({ msg: 'Patient already exists' });
     }
 
-    // // Validate password and confirmPassword match
-    // if (password !== confirmPassword) {
-    //   return res.status(400).json({ msg: 'Password confirmation does not match password' });
-    // }
+    // Validate password and confirmPassword match
+    if (password !== confirmPassword) {
+      return res.status(400).json({ msg: 'Password confirmation does not match password' });
+    }
 
     // Create a new patient
     patient = new Patient({
       name,
       email,
-      passwordHash: passwordHash, // Password will be hashed in the schema's pre-save middleware
-      profile_img: profile_img || '', // Optional field for profile image, default is an empty string
+      password, // Password will be hashed in the schema's pre-save middleware
+      profile_img: profile_img || '', 
     });
 
     await patient.save();
@@ -51,6 +51,7 @@ exports.registerPatient = async (req, res) => {
     res.status(500).send('Server error');
   }
 };
+
 
 // @desc    Authenticate patient & get token
 // @route   POST /api/auth/login
